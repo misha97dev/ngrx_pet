@@ -1,0 +1,10 @@
+.errors {
+  color: red;
+  text-align: center;
+  &__item {
+    margin-bottom: 4px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

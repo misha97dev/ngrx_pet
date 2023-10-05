@@ -1,0 +1,58 @@
+<ng-container *ngIf="data$ | async as data">
+  <div class="auth-page container">
+    <div class="auth-page__card card">
+      <h2 class="form__title">Registration</h2>
+      <form class="auth-page__form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form__field">
+          <label for="username" class="form__label">Username</label>
+          <input
+            class="form__input"
+            type="text"
+            id="username"
+            placeholder="Username"
+            formControlName="username"
+          />
+        </div>
+        <div class="form__field">
+          <label for="email" class="form__label">Email</label>
+          <input
+            class="form__input"
+            type="text"
+            id="email"
+            placeholder="Email"
+            formControlName="email"
+          />
+        </div>
+        <div class="form__field">
+          <label for="password" class="form__label">Password</label>
+          <input
+            class="form__input"
+            type="password"
+            id="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+        </div>
+        <div class="auth-page__error">
+          <app-backend-error
+            *ngIf="data.backendErrors"
+            [backendErrors]="data.backendErrors"
+          ></app-backend-error>
+        </div>
+        <div class="form__btns">
+          <button type="reset" class="btn btn__cancel">Reset</button>
+          <button
+            type="submit"
+            class="btn btn__black"
+            [disabled]="data.isSubmitting || !form.valid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+      <a routerLink="/login" class="auth-page__link">
+        Already have an account? Login!
+      </a>
+    </div>
+  </div>
+</ng-container>
